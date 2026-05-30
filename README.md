@@ -1,28 +1,18 @@
+---
+title: Knowledge Worker
+emoji: 📚
+colorFrom: blue
+colorTo: indigo
+sdk: gradio
+sdk_version: 4.44.0
+app_file: app.py
+pinned: false
+license: mit
+short_description: RAG chat over a demo document corpus with sources panel
+---
+
 # Knowledge Worker
 
-RAG **knowledge worker** over a demo document corpus (fictional insurance company): products, employees, contracts, and company markdown from the LLM engineering course.
+RAG pipeline: ingest markdown → Chroma → retrieve → answer (Hugging Face router).
 
-- **Ingest:** load `.md` → chunk → embed (sentence-transformers) → Chroma  
-- **Query:** retrieve chunks → answer with Hugging Face router (`HF_TOKEN`)  
-- **UI:** Gradio chat + sources panel  
-
-## Run locally
-
-```bash
-pip install -r requirements.txt
-export HF_TOKEN=hf_...   # https://huggingface.co/settings/tokens
-python app.py
-```
-
-First run builds `chroma_db/` (~1–3 min).
-
-## Deploy on Hugging Face
-
-See [DEPLOY.md](./DEPLOY.md). Suggested Space: `sash007/knowledge-worker`.
-
-## Secrets
-
-| Variable | Required |
-|----------|----------|
-| `HF_TOKEN` | Yes |
-| `HF_CHAT_MODEL` | Optional (default: `moonshotai/Kimi-K2-Instruct-0905`) |
+**Secret required:** `HF_TOKEN`
