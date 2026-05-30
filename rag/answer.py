@@ -3,6 +3,7 @@ import os
 from openai import OpenAI
 
 from config import COMPANY_NAME, HF_CHAT_MODEL
+from rag.hf_auth import require_hf_token
 from rag.retrieve import retrieve
 
 SYSTEM_PROMPT_TEMPLATE = """
@@ -19,10 +20,10 @@ Context:
 
 
 def get_client():
-    token = os.environ.get("HF_TOKEN")
-    if not token:
-        raise RuntimeError("HF_TOKEN is not set in Space secrets")
-    return OpenAI(base_url="https://router.huggingface.co/v1", api_key=token)
+    return OpenAI(
+        base_url="https://router.huggingface.co/v1",
+        api_key=require_hf_token(),
+    )
 
 
 def answer_question(question: str, history: list | None = None):

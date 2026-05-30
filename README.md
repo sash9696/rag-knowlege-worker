@@ -16,4 +16,8 @@ short_description: RAG chat over a demo document corpus with sources panel
 
 RAG pipeline: ingest markdown → Chroma → retrieve → answer (Hugging Face router).
 
-**Secret required:** `HF_TOKEN`
+**Secret required:** add under **Settings → Repository secrets** (not public Variables):
+
+- Name: `HF_TOKEN`
+- Value: your `hf_…` write token from [settings/tokens](https://huggingface.co/settings/tokens)
+- Then **Factory restart** the Space
