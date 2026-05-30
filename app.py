@@ -5,7 +5,10 @@ RAG chat over a demo document corpus (products, employees, contracts, company).
 import gradio as gr
 
 from rag.answer import answer_question
+from rag.hf_auth import log_token_diagnostics, resolve_hf_token
 from rag.ingest import ensure_vector_db
+
+log_token_diagnostics()
 
 
 def format_context(docs):
@@ -46,6 +49,15 @@ def build_ui():
     theme = gr.themes.Soft(primary_hue="cyan")
 
     with gr.Blocks(title="Knowledge Worker", theme=theme) as ui:
+        if resolve_hf_token():
+            gr.Markdown("✅ **HF token detected** — chat is enabled.")
+        else:
+            gr.Markdown(
+                "⚠️ **HF token not visible in this container.** "
+                "Settings → **Secrets** → **Replace** `HF_TOKEN`: paste **only** the `hf_…` "
+                "string (not `HF_TOKEN=…`). Then **Factory restart** and check Logs for "
+                "`resolve_hf_token: ok`."
+            )
         gr.Markdown(
             """
 # Knowledge Worker
