@@ -1,27 +1,24 @@
-# Deploy Insurellm Docs RAG to Hugging Face
+# Deploy Knowledge Worker to Hugging Face
 
 ## 1. Create the Space
 
 1. Go to https://huggingface.co/new-space
-2. Name: **`insurellm-docs-rag`** (or change `projects.js` demo URL to match)
+2. Name: **`knowledge-worker`**
 3. SDK: **Gradio**
 4. Hardware: **CPU basic** (free)
 5. Visibility: Public
+6. Link repo: `sash9696/rag-knowlege-worker` (or push files manually)
 
-## 2. Push this folder
-
-From your machine (one-time):
+## 2. Push updates (if using HF git)
 
 ```bash
 cd /Users/sahil/Desktop/Ai-portfolio/docs-rag-space
-git init
 git add .
-git commit -m "Insurellm docs RAG Space"
-git remote add origin https://huggingface.co/spaces/sash007/insurellm-docs-rag
-git push -u origin main
+git commit -m "Rename to Knowledge Worker"
+git push origin main
+# If using HF remote:
+git push space main
 ```
-
-Or upload files in the Space **Files** tab (include `knowledge-base/` tree).
 
 ## 3. Secrets
 
@@ -35,14 +32,11 @@ Optional: `HF_CHAT_MODEL` = `moonshotai/Kimi-K2-Instruct-0905`
 
 ## 4. First build
 
-- Space installs deps and runs `app.py`.
-- First request triggers **ingest** (~76 markdown files → Chroma). Allow 2–5 minutes on cold start.
-- Later starts reuse `chroma_db/.ready`.
+- First chat triggers ingest (~76 docs → Chroma). Allow **2–5 minutes** on cold start.
+- Later runs reuse `chroma_db/.ready`.
 
-## 5. Wire portfolio
+## 5. Live URL
 
-Demo URL (after live):
+`https://huggingface.co/spaces/sash007/knowledge-worker`
 
-`https://huggingface.co/spaces/sash007/insurellm-docs-rag`
-
-Already set in `src/data/projects.js` — change slug if your Space name differs.
+Update `src/data/projects.js` if your Space slug differs.

@@ -1,5 +1,6 @@
 gradio
 openai
+langchain-openai
 langchain-chroma
 langchain-community
 langchain-huggingface

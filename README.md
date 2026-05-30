@@ -1,6 +1,6 @@
-# rag-knowlege-worker
+# Knowledge Worker
 
-RAG chat over the **Insurellm** demo corpus (fictional insurance company): products, employees, contracts, and company markdown from the LLM engineering course. **No Robin docs.**
+RAG **knowledge worker** over a demo document corpus (fictional insurance company): products, employees, contracts, and company markdown from the LLM engineering course.
 
 - **Ingest:** load `.md` → chunk → embed (sentence-transformers) → Chroma  
 - **Query:** retrieve chunks → answer with Hugging Face router (`HF_TOKEN`)  
@@ -18,7 +18,7 @@ First run builds `chroma_db/` (~1–3 min).
 
 ## Deploy on Hugging Face
 
-See [DEPLOY.md](./DEPLOY.md). Suggested Space: `sash007/insurellm-docs-rag`.
+See [DEPLOY.md](./DEPLOY.md). Suggested Space: `sash007/knowledge-worker`.
 
 ## Secrets
 

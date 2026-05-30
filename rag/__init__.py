@@ -1,1 +1,1 @@
-# RAG package for Insurellm docs Space
+# RAG package for Knowledge Worker

@@ -3,13 +3,19 @@ from pathlib import Path
 
 from langchain_chroma import Chroma
 from langchain_community.document_loaders import DirectoryLoader, TextLoader
-from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 from config import CHUNK_OVERLAP, CHUNK_SIZE, DB_NAME, EMBEDDING_MODEL, KNOWLEDGE_BASE_PATH
 
 
 def get_embeddings():
+    """OpenAI embeddings when key is set (local dev); else HF sentence-transformers (Spaces)."""
+    if os.environ.get("OPENAI_API_KEY"):
+        from langchain_openai import OpenAIEmbeddings
+
+        return OpenAIEmbeddings(model="text-embedding-3-small")
+    from langchain_huggingface import HuggingFaceEmbeddings
+
     return HuggingFaceEmbeddings(
         model_name=os.environ.get("EMBEDDING_MODEL", EMBEDDING_MODEL)
     )

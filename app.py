@@ -1,6 +1,6 @@
 """
-Insurellm Docs RAG — Hugging Face Space
-Chat over fictional insurance company docs (products, employees, contracts, company).
+Knowledge Worker — Hugging Face Space
+RAG chat over a demo document corpus (products, employees, contracts, company).
 """
 import gradio as gr
 
@@ -45,12 +45,12 @@ def build_ui():
 
     theme = gr.themes.Soft(primary_hue="cyan")
 
-    with gr.Blocks(title="Insurellm Docs RAG", theme=theme) as ui:
+    with gr.Blocks(title="Knowledge Worker", theme=theme) as ui:
         gr.Markdown(
             """
-# Insurellm — internal docs Q&A
-Ask about **products**, **employees**, **contracts**, and **company** info.
-Answers are grounded in retrieved markdown chunks (demo corpus, not Robin).
+# Knowledge Worker
+Ask about **products**, **employees**, **contracts**, and **company** info in the demo corpus.
+Answers are grounded in retrieved markdown chunks shown on the right.
             """
         )
         with gr.Row():
